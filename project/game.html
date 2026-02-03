@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Collect Hearts for Janae 💖</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="game-page">
+    <!-- Game Container -->
+    <div class="game-container">
+        <!-- Game Header -->
+        <div class="game-header">
+            <h2 class="game-title">Collect Hearts for Janae 💖</h2>
+            <div class="score-display">
+                <span class="score-label">Hearts Collected:</span>
+                <span class="score-value" id="scoreDisplay">0 / 10</span>
+            </div>
+        </div>
+
+        <!-- Game Canvas Area -->
+        <div class="game-canvas" id="gameCanvas">
+            <!-- Player character -->
+            <div class="player" id="player">👩🏻‍❤️‍👨🏻</div>
+            
+            <!-- Hearts will be spawned here dynamically -->
+        </div>
+
+        <!-- Mobile Controls -->
+        <div class="mobile-controls" id="mobileControls">
+            <div class="control-row">
+                <button class="control-btn" data-direction="up">▲</button>
+            </div>
+            <div class="control-row">
+                <button class="control-btn" data-direction="left">◄</button>
+                <button class="control-btn" data-direction="down">▼</button>
+                <button class="control-btn" data-direction="right">►</button>
+            </div>
+        </div>
+
+        <!-- Game Instructions -->
+        <div class="game-instructions">
+            <p>Use arrow keys (or buttons below) to move and collect hearts! 💕</p>
+        </div>
+    </div>
+
+    <!-- Final Screen (hidden initially) -->
+    <div class="final-screen" id="finalScreen">
+        <div class="final-content">
+            <h2 class="final-title fade-in-text" id="finalQuestion">
+                I have one last question for you…
+            </h2>
+            <h1 class="valentine-question" id="valentineQuestion">
+                Janae, will you be my Valentine? 💘
+            </h1>
+            
+            <div class="answer-buttons" id="answerButtons">
+                <button class="answer-btn" onclick="sayYes()">Yes 💖</button>
+                <button class="answer-btn" onclick="sayYes()">Yes of course 🥰</button>
+            </div>
+
+            <!-- Success message (hidden initially) -->
+            <div class="success-message" id="successMessage">
+                <h2 class="success-text">You just made Anas the happiest person ever.</h2>
+                <img src="assets/images/img.jpg" alt="Special moment" class="success-image">
+                <p class="final-love-message">
+                    I will always love you Janae, never forget it &lt;3<br>
+                    - your loving, caring and perfect boyfriend hihi
+                </p>
+                <button class="memories-button" onclick="goToMemories()">
+                    View Our Memories 📸
+                </button>
+                <div class="heart-explosion" id="heartExplosion"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Background music -->
+    <audio id="bgMusic" loop>
+        <source src="assets/sounds/music.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Sound effects -->
+    <audio id="collectSound" src="assets/sounds/pop.mp3"></audio>
+    <audio id="winSound" src="assets/sounds/success.mp3"></audio>
+
+    <script>
+        // Continue background music from landing page
+        const music = document.getElementById('bgMusic');
+        music.volume = 0.3;
+        
+        // Check if music was playing and restore time
+        if (sessionStorage.getItem('musicPlaying') === 'true') {
+            const savedTime = parseFloat(sessionStorage.getItem('musicTime')) || 0;
+            music.currentTime = savedTime;
+            music.play();
+        } else {
+            // Start music if not already playing
+            music.play().catch(() => {
+                document.body.addEventListener('click', () => {
+                    music.play();
+                }, { once: true });
+            });
+        }
+    </script>
+    <script src="game.js"></script>
+</body>
+</html>
