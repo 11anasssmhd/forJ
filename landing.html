@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Janae 💗</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Retro pixel font from Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="landing-page">
+    <!-- Floating hearts animation background -->
+    <div class="hearts-container">
+        <div class="heart"></div>
+        <div class="heart"></div>
+        <div class="heart"></div>
+        <div class="heart"></div>
+        <div class="heart"></div>
+        <div class="heart"></div>
+        <div class="heart"></div>
+        <div class="heart"></div>
+    </div>
+
+    <!-- Main content -->
+    <div class="landing-content">
+        <!-- Secret Easter Egg -->
+        <div class="easter-egg" id="easterEgg" onclick="revealSecret()">
+            A + J
+        </div>
+
+        <div class="landing-box">
+            <h1 class="pixel-title">Welcome to my heart 💗</h1>
+            
+            <p class="subtitle">I made a tiny world just for you, Janae.</p>
+            
+            <div class="message-box">
+                <p class="love-message">
+                    Hey Janae,<br><br>
+                    I know the distance between us can be hard sometimes, but I wanted to create something special 
+                    just for you. This little game is a reminder that no matter how many kilometers separate us, 
+                    my heart is always with you. Every pixel, every color, every heart you'll collect, 
+                    they all represent how much you mean to me.<br><br>
+                    I hope this makes you smile the way you make me smile every single day.<br><br>
+                    With all my love,<br>
+                    Anas 💕
+                </p>
+            </div>
+
+            <button class="start-button" onclick="startGame()">
+                <span class="button-text">Start the game 🎮</span>
+            </button>
+
+            <!-- Background music -->
+            <audio id="bgMusic" loop>
+                <source src="assets/sounds/music.mp3" type="audio/mpeg">
+            </audio>
+        </div>
+    </div>
+
+    <!-- Secret Message Modal -->
+    <div class="secret-modal" id="secretModal">
+        <div class="secret-modal-content">
+            <span class="close-modal" onclick="closeSecret()">&times;</span>
+            <h2 class="secret-title">You found our secret! 💕</h2>
+            <div class="secret-message">
+                <p>Anas + Janae = Forever (is this corny ? hihihi i dont careeeeeeeee) </p>
+                <p>You're not just my girlfriend,<br>you're my best friend,<br>my safe place,<br>and my favorite person.</p>
+                <p>Every day with you is a blessing I never want to take for granted.</p>
+                <p class="secret-signature">- Your Anas 💗</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Background music - will start on first user interaction
+        const music = document.getElementById('bgMusic');
+        music.volume = 0.3;
+        
+        // Try to play music when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            music.play().catch(() => {
+                // If autoplay is blocked, play on first click
+                document.body.addEventListener('click', () => {
+                    music.play();
+                }, { once: true });
+            });
+        });
+        
+        // Start game function
+        function startGame() {
+            // Ensure music is playing
+            music.play();
+            
+            // Store music state in session storage so it continues on game page
+            sessionStorage.setItem('musicPlaying', 'true');
+            sessionStorage.setItem('musicTime', music.currentTime);
+            
+            // Navigate to game page
+            window.location.href = 'game.html';
+        }
+
+        // Easter egg functions
+        function revealSecret() {
+            const modal = document.getElementById('secretModal');
+            modal.classList.add('show');
+        }
+
+        function closeSecret() {
+            const modal = document.getElementById('secretModal');
+            modal.classList.remove('show');
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('secretModal');
+            if (event.target === modal) {
+                modal.classList.remove('show');
+            }
+        }
+
+        // Add button hover sound effect (optional)
+        // Uncomment if you add sound file
+        /*
+        document.querySelector('.start-button').addEventListener('mouseenter', () => {
+            const hoverSound = new Audio('assets/sounds/hover.mp3');
+            hoverSound.volume = 0.3;
+            hoverSound.play();
+        });
+        */
+    </script>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Memories 💕</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Quicksand:wght@400;600;700&family=Caveat:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="memories-page">
+    <!-- Floating hearts animation background -->
+    <div class="hearts-container">
+        <div class="heart"></div>
+        <div class="heart"></div>
+        <div class="heart"></div>
+        <div class="heart"></div>
+        <div class="heart"></div>
+        <div class="heart"></div>
+        <div class="heart"></div>
+        <div class="heart"></div>
+    </div>
+
+    <!-- Memories Content -->
+    <div class="memories-container">
+        <h1 class="memories-title">Our Beautiful Moments 📸</h1>
+        <p class="memories-subtitle">Every picture tells our story 💗</p>
+
+        <!-- Polaroid Gallery Grid -->
+        <div class="polaroid-gallery">
+            <!-- Polaroid 1 -->
+            <div class="polaroid">
+                <div class="polaroid-image">
+                    <img src="assets/images/memory1.jpeg" alt="Our memory" onerror="this.src='assets/images/img.HEIC'">
+                </div>
+                <div class="polaroid-caption">
+                    <p>The picture that started it all 🤍</p>
+                </div>
+            </div>
+
+            <!-- Polaroid 2 -->
+            <div class="polaroid">
+                <div class="polaroid-image">
+                    <img src="assets/images/memory2.jpg" alt="Our memory" onerror="this.src='assets/images/img.HEIC'">
+                </div>
+                <div class="polaroid-caption">
+                    <p>The day that started it all hihi</p>
+                </div>
+            </div>
+
+            <!-- Polaroid 3 -->
+            <div class="polaroid">
+                <div class="polaroid-image">
+                    <img src="assets/images/memory3.png" alt="Our memory" onerror="this.src='assets/images/img.HEIC'">
+                </div>
+                <div class="polaroid-caption">
+                    <p>Missing each other has become our full-time job hihihi</p>
+                </div>
+            </div>
+
+            <!-- Polaroid 4 -->
+            <div class="polaroid">
+                <div class="polaroid-image">
+                    <img src="assets/images/memory4.png" alt="Our memory" onerror="this.src='assets/images/img.HEIC'">
+                </div>
+                <div class="polaroid-caption">
+                    <p>Ohh... did I ? 🤭</p>
+                </div>
+            </div>
+
+            <!-- Polaroid 5 -->
+            <div class="polaroid">
+                <div class="polaroid-image">
+                    <img src="assets/images/memory5.PNG" alt="Our memory" onerror="this.src='assets/images/img.HEIC'">
+                </div>
+                <div class="polaroid-caption">
+                    <p>Just us being weirdos ❤️</p>
+                </div>
+            </div>
+
+            <!-- Polaroid 6 -->
+            <div class="polaroid">
+                <div class="polaroid-image">
+                    <img src="assets/images/memory6.HEIC" alt="Our memory" onerror="this.src='assets/images/img.HEIC'">
+                </div>
+                <div class="polaroid-caption">
+                    <p>Just you being the cutest girl on earth, i love you ❤️</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Message -->
+        <div class="memories-bottom-message">
+            <p>These are just a few moments... but every second with you is a treasure sweetheart, i love you so much</p>
+            <p class="signature">- Anas 💗</p>
+        </div>
+    </div>
+
+    <!-- Background music -->
+    <audio id="bgMusic" loop>
+        <source src="assets/sounds/music.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        // Continue background music
+        const music = document.getElementById('bgMusic');
+        music.volume = 0.3;
+        
+        if (sessionStorage.getItem('musicPlaying') === 'true') {
+            const savedTime = parseFloat(sessionStorage.getItem('musicTime')) || 0;
+            music.currentTime = savedTime;
+            music.play();
+        } else {
+            music.play().catch(() => {
+                document.body.addEventListener('click', () => {
+                    music.play();
+                }, { once: true });
+            });
+        }
+    </script>
+</body>
+</html>
